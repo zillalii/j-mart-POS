@@ -1,0 +1,214 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Centering the signup form */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+   
+    background: url('../img/bg.jpg');
+    background-repeat: no-repeat;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    background-size: cover;
+}
+
+/* Styling the signup container */
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+}
+.logo {
+    display: flex;  /* Ensures proper alignment */
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 60px; /* Adjust size if needed */
+           
+    border-radius: 50%;
+    margin: 0; /* This doesn't do much unless affected by other margins */
+}
+
+.logo span {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Styling form inputs */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Styling the button */
+button {
+    width: 100%;
+    padding: 10px;
+    background: #28a745;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #218838;
+}
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif, sans-serif;
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #492ede;
+    padding: 15px 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #28a745;
+}
+
+
+/* Styling the signup container */
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Banner Styling */
+.banner {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.banner img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.banner h2 {
+    font-size: 20px;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* Styling form inputs */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Styling the button */
+button {
+    width: 100%;
+    padding: 10px;
+    background: #28a745;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #218838;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li {
+    position: relative; /* Ensures dropdown positions correctly */
+    display: inline-block;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    box-shadow: 0 0 10px blue;
+    border-radius: 5px;
+    width: 150px;
+}
+
+li:hover .dropdown {
+    display: block;
+}
+
+.dropdown li {
+    list-style: none;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    color: yellowgreen;
+}
+
+.dropdown li:hover {
+    background: blue;
+}
