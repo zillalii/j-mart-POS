@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,8 +70,8 @@
     <li><a class="dropdown-item text-dark" href="inventory_add_item.php">Add Products</a></li>
     <li><a class="dropdown-item text-dark" href="inventory_upd.php">Update Products</a></li>
   </ul>
-</li>
-          <li class="nav-item dropdown">
+
+<li class="nav-item dropdown">
   <a 
     class="nav-link dropdown-toggle text-decoration-none text-dark dark-mode-text" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Manage Users
@@ -91,9 +92,24 @@
         <div class="d-flex justify-content-between align-items-center py-3 border-bottom">
           <h1 class="h4">Welcome </h1>
           <div class="d-flex align-items-center gap-3">
-          <span>jmart@live.com</span>
-          <img src="img/J-Mart.png" alt="Avatar" class="rounded-circle" width="45" height="45"/>
-            <!-- DARK MODE TOGGLE ICON -->
+        <span>jmart@live.com</span>
+        <div class="dropdown"> 
+          <a class="d-flex align-items-center text-decoration-none dropdown-toggle text-dark"
+             href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">  
+            
+            <img src="img/J-Mart.png" alt="Avatar" class="rounded-circle" width="45" height="45"/>
+             <div class="d-flex flex-column lh-sm ms-3">
+                <span id="userName" class="fw-bold text-danger ">Ali</span>
+                <span id="userRole" class="d-block small text-danger ">admin</span>
+            </div>
+            </a>
+                <ul class="dropdown-menu dropdown-menu-end bg-black golden-shadow border-0" aria-labelledby="accountDropdown">
+                    
+                    <li><a class="dropdown-item text-danger" href="SignIn.php">
+                        <i class="fas fa-power-off me-2" ></i>Logout</a></li>
+                </ul>
+        </div>           
+        <!-- DARK MODE TOGGLE ICON -->
             <div>
               <i class="bi bi-moon-fill fs-5 cursor-pointer" id="darkModeToggle" role="button" title="Toggle Dark Mode"></i>
             </div>
@@ -137,11 +153,9 @@
               <td><?php echo $row['u_email'] ?></td>
               <td><?php echo $row['u_type'] ?></td>
               <td>
-                <!-- <div class="d-flex justify-content-center gap-2">
-                <a class="btn  btn-scale btn-primary px-4" href='update_user.php?uid=<?php echo $row['uid']; ?>'>Edit</a>
-                <span class="d-flex justify-content-center align-items-center text-muted fw-bold">|</span>
-                  <a class="btn btn-scale btn-danger px-3" onclick="confirmDeletion(<?= $row['uid']; ?>)" >Delete</a>
-                </div>   -->
+                <div class="d-flex justify-content-center gap-2">
+                  <a class="btn btn-scale btn-danger px-3" onclick="confirmDeletion(<?= $row['u_id']; ?>)" >Delete</a>
+                </div>   
             </td>
             </tr>
             <?php } ?>
@@ -220,6 +234,13 @@
      function confirmItemDeletion(item) {
         if (confirm('Are you sure you want to delete this item?')) {
             window.location.href = 'inventory_delete_sql.php?id=' + item;
+        }
+    }
+
+    //User deletion function
+    function confirmDeletion(user) {
+        if (confirm('Are you sure you want to delete this user?')) {
+            window.location.href = 'user_delete_sql.php?id=' + user;
         }
     }
        

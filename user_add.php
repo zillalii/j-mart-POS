@@ -93,9 +93,24 @@
         <div class="d-flex justify-content-between align-items-center py-3 border-bottom">
           <h1 class="h4">Welcome </h1>
           <div class="d-flex align-items-center gap-3">
-          <span>jmart@live.com</span>
-          <img src="img/J-Mart.png" alt="Avatar" class="rounded-circle" width="45" height="45"/>
-            <!-- DARK MODE TOGGLE ICON -->
+        <span>jmart@live.com</span>
+        <div class="dropdown"> 
+          <a class="d-flex align-items-center text-decoration-none dropdown-toggle text-dark"
+             href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">  
+            
+            <img src="img/J-Mart.png" alt="Avatar" class="rounded-circle" width="45" height="45"/>
+             <div class="d-flex flex-column lh-sm ms-3">
+                <span id="userName" class="fw-bold text-danger ">Ali</span>
+                <span id="userRole" class="d-block small text-danger ">admin</span>
+            </div>
+            </a>
+                <ul class="dropdown-menu dropdown-menu-end bg-black golden-shadow border-0" aria-labelledby="accountDropdown">
+                    
+                    <li><a class="dropdown-item text-danger" href="SignIn.php">
+                        <i class="fas fa-power-off me-2" ></i>Logout</a></li>
+                </ul>
+        </div>             
+        <!-- DARK MODE TOGGLE ICON -->
             <div>
               <i class="bi bi-moon-fill fs-5 cursor-pointer" id="darkModeToggle" role="button" title="Toggle Dark Mode"></i>
             </div>

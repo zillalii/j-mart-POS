@@ -67,11 +67,22 @@
   <ul class="dropdown-menu">
     <li><a class="dropdown-item text-dark" href="inventory_view.php">View Products</a></li>
     <li><a class="dropdown-item text-dark" href="inventory_add_item.php">Add Products</a></li>
-    <li><a class="dropdown-item text-dark" href="#">Update Products</a></li>
+    <li><a class="dropdown-item text-dark" href="inventory_upd.php">Update Products</a></li>
   </ul>
 </li>
-          <li class="nav-item"><a class="nav-link text-dark dark-mode-text" href="#">Settings</a></li>
-          <li class="nav-item"><a class="nav-link text-danger" href="#">Logout</a></li>
+
+<li class="nav-item dropdown">
+  <a 
+    class="nav-link dropdown-toggle text-decoration-none text-dark dark-mode-text" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Manage Users
+  </a>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item text-dark" href="user_view.php">View Users</a></li>
+    <li><a class="dropdown-item text-dark" href="user_add.php">Add Users</a></li>
+    <li><a class="dropdown-item text-dark" href="user_upd.php">Edit Users</a></li>
+  </ul>
+</li>
+          
         </ul>
       </nav>
 
@@ -82,8 +93,6 @@
         <div class="d-flex justify-content-between align-items-center py-3 border-bottom">
           <h1 class="h4">Welcome </h1>
           <div class="d-flex align-items-center gap-3">
-          <span>jmart@live.com</span>
-          <img src="img/J-Mart.png" alt="Avatar" class="rounded-circle" width="45" height="45"/>
             <!-- DARK MODE TOGGLE ICON -->
             <div>
               <i class="bi bi-moon-fill fs-5 cursor-pointer" id="darkModeToggle" role="button" title="Toggle Dark Mode"></i>
@@ -91,8 +100,24 @@
             <!-- COLOR PICKER ICON -->
             <div>
               <i class="bi bi-palette fs-5 cursor-pointer" id="colorPickerToggle" role="button" title="Choose Background Color"></i>
+            </div>            
+        <span>jmart@live.com</span>
+        <div class="dropdown"> 
+          <a class="d-flex align-items-center text-decoration-none dropdown-toggle text-dark"
+             href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">  
+            
+            <img src="img/J-Mart.png" alt="Avatar" class="rounded-circle" width="45" height="45"/>
+             <div class="d-flex flex-column lh-sm ms-3">
+                <span id="userName" class="fw-bold text-danger ">Ali</span>
+                <span id="userRole" class="d-block small text-danger ">admin</span>
             </div>
-          </div>
+            </a>
+                <ul class="dropdown-menu dropdown-menu-end bg-black golden-shadow border-0" aria-labelledby="accountDropdown">
+                    
+                    <li><a class="dropdown-item text-danger" href="SignIn.php">
+                        <i class="fas fa-power-off me-2" ></i>Logout</a></li>
+                </ul>
+        </div>
         </div>
 
         <!-- Content -->
@@ -132,11 +157,9 @@
               <td><?php echo $row['p_supplier'] ?></td>
               <td><?php echo $row['p_description'] ?></td>
               <td>
-                <!-- <div class="d-flex justify-content-center gap-2">
-                <a class="btn btn-primary btn-scale px-4" href='inventory_update_inline.php?tid=<?php echo $row['tid']; ?>'>Edit</a>
-                <span class="d-flex justify-content-center align-items-center text-muted fw-bold">|</span>
-                  <a class="btn btn-danger btn-scale px-3" onclick="confirmItemDeletion(<?= $row['tid']; ?>)" >Delete</a>
-                </div>   -->
+                <div class="d-flex justify-content-center gap-2">
+                  <a class="btn btn-danger btn-scale px-3" onclick="confirmItemDeletion(<?= $row['pid']; ?>)" >Delete</a>
+                </div>
             </td>
             </tr>
             <?php } ?>
@@ -209,6 +232,19 @@
       document.body.style.backgroundColor = colorPicker.value;
       localStorage.setItem("backgroundColor", colorPicker.value);
     });
+
+
+      function confirmDeletion(user) {
+        if (confirm('Are you sure you want to delete this user?')) {
+            window.location.href = 'sql_delete_user.php?id=' + user;
+        }
+    }
+
+    function confirmItemDeletion(product) {
+        if (confirm('Are you sure you want to delete this item?')) {
+            window.location.href = 'inventory_delete_sql.php?id=' + product;
+        }
+    }  
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
