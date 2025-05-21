@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard</title>
+  <title>Add Inventory</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
@@ -57,10 +57,9 @@
       <nav class="col-md-3 col-lg-2 d-md-block sidebar p-3">
       <h2 class="mb-4 text-danger"><strong>J MART</strong></h2>
         <ul class="nav flex-column">
-          <li class="nav-item"><a class="nav-link text-dark dark-mode-text" href="#">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link text-dark dark-mode-text" href="dashboard.php">Dashboard</a></li>
           <li class="nav-item"><a class="nav-link text-dark dark-mode-text" href="#">Profile</a></li>
-
- <li class="nav-item dropdown">
+<li class="nav-item dropdown">
   <a 
     class="nav-link dropdown-toggle text-decoration-none text-dark dark-mode-text" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Inventory
@@ -71,8 +70,6 @@
     <li><a class="dropdown-item text-dark" href="#">Update Products</a></li>
   </ul>
 </li>
-
- 
           <li class="nav-item"><a class="nav-link text-dark dark-mode-text" href="#">Settings</a></li>
           <li class="nav-item"><a class="nav-link text-danger" href="#">Logout</a></li>
         </ul>
@@ -85,8 +82,8 @@
         <div class="d-flex justify-content-between align-items-center py-3 border-bottom">
           <h1 class="h4">Welcome </h1>
           <div class="d-flex align-items-center gap-3">
-            <span>jmart@live.com</span>
-            <img src="img/J-Mart.png" alt="Avatar" class="rounded-circle" width="45" height="45"/>
+          <span>jmart@live.com</span>
+          <img src="img/J-Mart.png" alt="Avatar" class="rounded-circle" width="45" height="45"/>
             <!-- DARK MODE TOGGLE ICON -->
             <div>
               <i class="bi bi-moon-fill fs-5 cursor-pointer" id="darkModeToggle" role="button" title="Toggle Dark Mode"></i>
@@ -99,59 +96,59 @@
         </div>
 
         <!-- Content -->
-        <div class="container py-5">
-                <div class="row g-4 ">
-                    <!-- User Profile Card -->
-                    <div class="col-md-4">
-                        <div class="card text-center shadow-sm border-0 h-100" id="userProfile">
-                            <div class="card-body">
-                                <i class="bi bi-person-circle fs-1 mb-3"></i>
-                                <h5 class="card-title">User Profile</h5>
-                            </div>
-                        </div>
-                    </div>
-            
-                    <!-- Inventory Card with Modal -->
-                    <div class="col-md-4">
-                        <div class="card text-center shadow-sm border-0 h-100" id="inventoryCard">
-                            <div class="card-body">
-                                <i class="bi bi-box fs-1 mb-3"></i>
-                                <h5 class="card-title">Inventory</h5>
-                            </div>
-                        </div>
-                    </div>
-            
-                    <!-- Supplier Card -->
-                    <div class="col-md-4">
-                        <div class="card text-center shadow-sm border-0 h-100" id="supplierCard">
-                            <div class="card-body">
-                                <i class="bi bi-person-bounding-box fs-1 mb-3"></i>
-                                <h5 class="card-title">Supplier</h5>
-                            </div>
-                        </div>
-                    </div>
-            
-                    <!-- POS Card -->
-                    <div class="col-md-4">
-                        <div class="card text-center shadow-sm border-0 h-100" id="posCard">
-                            <div class="card-body">
-                                <i class="bi bi-cart fs-1 mb-3"></i>
-                                <h5 class="card-title">POS</h5>
-                            </div>
-                        </div>
-                    </div>
-            
-                    <!-- Reports Card -->
-                    <div class="col-md-4">
-                        <div class="card text-center shadow-sm border-0 h-100" id="reportsCard">
-                            <div class="card-body">
-                                <i class="bi bi-bar-chart-line fs-1 mb-3"></i>
-                                <h5 class="card-title">Reports</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="card mt-4 p-4 ">
+    <h1>View</h1>
+     <?php 
+    include('includes/db.php');
+
+         $sql = "SELECT * FROM products";
+         $result = mysqli_query($connection, $sql) or die("Query Unsuccessful");
+
+         if(mysqli_num_rows($result) > 0 ) {
+         ?>
+         <div class="rounded">
+        <table class="table table-bordered table-striped table-hover">
+          <thead class="table-warning text-center">
+            <tr>
+              <th>ID</th>
+              <th>Product Name</th>
+              <th>Brand</th>
+              <th>Price</th>
+              <th>Supplier</th>
+              <th>Description</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+
+            while($row = mysqli_fetch_assoc($result)) {
+            ?>
+            <tr class="text-center">
+              <td><?= $row['pid'] ?></td>
+              <td><?php echo $row['p_name'] ?></td>
+              <td><?php echo $row['p_brand'] ?></td>
+              <td><?php echo $row['p_price'] ?></td>
+              <td><?php echo $row['p_supplier'] ?></td>
+              <td><?php echo $row['p_description'] ?></td>
+              <td>
+                <!-- <div class="d-flex justify-content-center gap-2">
+                <a class="btn btn-primary btn-scale px-4" href='inventory_update_inline.php?tid=<?php echo $row['tid']; ?>'>Edit</a>
+                <span class="d-flex justify-content-center align-items-center text-muted fw-bold">|</span>
+                  <a class="btn btn-danger btn-scale px-3" onclick="confirmItemDeletion(<?= $row['tid']; ?>)" >Delete</a>
+                </div>   -->
+            </td>
+            </tr>
+            <?php } ?>
+          </tbody>
+        </table>
+        </div>
+        <?php } else {
+          echo "<div class=' p-4'><h2>No record found</h2></div>";
+        }
+    ?>
+  </div>
+
       </main>
     </div>
   </div>
@@ -161,8 +158,6 @@
     <label for="colorPicker">Select Background Color: </label>
     <input type="color" id="colorPicker" value="#ffffff" />
   </div>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 
   <script>
     const toggleIcon = document.getElementById("darkModeToggle");
@@ -170,19 +165,6 @@
     const colorPickerContainer = document.querySelector(".color-picker-container");
     const colorPicker = document.getElementById("colorPicker");
 
-                
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     function toggleDarkMode() {
       document.body.classList.toggle("dark-mode");
   
@@ -227,17 +209,8 @@
       document.body.style.backgroundColor = colorPicker.value;
       localStorage.setItem("backgroundColor", colorPicker.value);
     });
-    $(document).ready(function() {
-    // Open modal when clicking on Inventory card
-    $('#inventoryCard').click(function() {
-      console.log('Clicked');
-        window.location.href = 'inventory_add_item.php';
-    });
-});
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
- 
-
 </body>
 </html>

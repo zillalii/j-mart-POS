@@ -1,0 +1,46 @@
+body {
+  background-image: url('/img/doc247.jpg');
+  background-size: cover;         /* Cover the entire screen */
+  background-position: center;    /* Center the image */
+  background-repeat: no-repeat;   /* Prevent tiling */
+  height: 50vh;                   /* Full viewport height */
+  margin: 0;    
+}
+
+/* styling for dashboard */
+body {
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  min-height: 100vh;
+  transition: background 0.4s ease;
+}
+body.dark-mode {
+  background: linear-gradient(135deg, #1e1e1e, #121212) !important;
+  color: white;
+}
+.card {
+  border-radius: 15px;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+.dark-mode .card {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+.dark-mode table {
+  color: white;
+}
+.dark-mode .table-bordered {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.btn-sm {
+  font-size: 0.85rem;
+}
+
+/* styling for signup.html */
+body {
+  background: linear-gradient(135deg, #4b6cb7, #182848);
+  height: 100vh;
+}
+body.dark-mode {
+  background: linear-gradient(135deg, #1e1e1e, #121212);
+  color: white;
+}
