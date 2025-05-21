@@ -1,0 +1,48 @@
+<?php 
+    include('includes/db.php');
+
+         $sql = "SELECT * FROM products";
+         $result = mysqli_query($connection, $sql) or die("Query Unsuccessful");
+
+         if(mysqli_num_rows($result) > 0 ) {
+         ?>
+         <div class="rounded">
+        <table class="table table-bordered table-striped table-hover">
+          <thead class="table-warning text-center">
+            <tr>
+              <th>ID</th>
+              <th>Product Name</th>
+              <th>Brand</th>
+              <th>Price</th>
+              <th>Supplier</th>
+              <th>Description</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+
+            while($row = mysqli_fetch_assoc($result)) {
+            ?>
+            <tr class="text-center">
+              <td><?= $row['pid'] ?></td>
+              <td><?php echo $row['p_name'] ?></td>
+              <td><?php echo $row['p_brand'] ?></td>
+              <td><?php echo $row['p_price'] ?></td>
+              <td><?php echo $row['p_supplier'] ?></td>
+              <td><?php echo $row['p_description'] ?></td>
+              <td>
+                <div class="d-flex justify-content-center gap-2">
+                  <a class="btn btn-danger btn-scale px-3" onclick="confirmItemDeletion(<?= $row['pid']; ?>)" >Delete</a>
+                </div>
+            </td>
+            </tr>
+            <?php } ?>
+          </tbody>
+        </table>
+        </div>
+        <?php } else {
+          echo "<div class=' p-4'><h2>No record found</h2></div>";
+        }
+    ?>
+  </div>

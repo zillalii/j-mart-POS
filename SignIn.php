@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(isset($_GET['action'])){
+  session_unset();
+  session_destroy();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,19 +20,28 @@
   <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="card p-4 shadow w-100" style="max-width: 400px;">
       <h2 class="text-center mb-4">Sign In</h2>
-      <form action="dashboard.php" method="POST">
+      <form id="signInForm"  action="login_backend.php" method="POST">
         <div class="mb-3">
           <label for="role" class="form-label">Role</label>
           <select name="role" id="role" class="form-select" required>
-            <option value="">--select--</option>
-            <option value="admin">Admin</option>
-            <option value="client">Client</option>
+            <option value="" disabled selected>--select--</option>
+            <?php
+
+                include('includes/db.php');
+
+                $sql = "SELECT * FROM user_type";
+                $result = mysqli_query($connection, $sql) or die("Query failed");
+                
+                if(mysqli_num_rows($result) > 0) {
+                  while($rows = mysqli_fetch_assoc($result)) {
+                    echo "<option value='{$rows['ut_id']}'>{$rows['u_type']}</option>";        
+                  }
+                }
+            ?>
+              </select>
           </select>
         </div>
-        <div class="mb-3">
-          <label for="fullname" class="form-label">Full Name</label>
-          <input type="text" name="fullname" id="fullname" class="form-control" placeholder="Full Name" required />
-        </div>
+      
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
           <input type="email" name="email" id="email" class="form-control" placeholder="Email" required />

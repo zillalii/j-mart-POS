@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(isset($_GET['action'])){
+  session_unset();
+  session_destroy();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,20 +100,20 @@
         <div class="d-flex justify-content-between align-items-center py-3 border-bottom">
           <h1 class="h4">Welcome </h1>
           <div class="d-flex align-items-center gap-3">
-        <span>jmart@live.com</span>
+        <span><?= $_SESSION['u_email']; ?></span>
         <div class="dropdown"> 
           <a class="d-flex align-items-center text-decoration-none dropdown-toggle text-dark"
              href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">  
             
             <img src="img/J-Mart.png" alt="Avatar" class="rounded-circle" width="45" height="45"/>
-             <div class="d-flex flex-column lh-sm ms-3">
-                <span id="userName" class="fw-bold text-danger ">Ali</span>
-                <span id="userRole" class="d-block small text-danger ">admin</span>
+            <div class="d-flex flex-column lh-sm ms-3">
+                <span id="userName" class="fw-bold text-danger "><?= $_SESSION['full_name']; ?></span>
+                <span id="userRole" class="d-block small text-danger "><?= $_SESSION['u_type']; ?></span>
             </div>
             </a>
                 <ul class="dropdown-menu dropdown-menu-end bg-black golden-shadow border-0" aria-labelledby="accountDropdown">
                     
-                    <li><a class="dropdown-item text-danger" href="SignIn.php">
+                    <li><a class="dropdown-item text-danger" href="SignIn.php?action=logout">
                         <i class="fas fa-power-off me-2" ></i>Logout</a></li>
                 </ul>
         </div>             

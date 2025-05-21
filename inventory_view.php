@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_GET['action'])){
+  session_unset();
+  session_destroy();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,7 +77,6 @@
     <li><a class="dropdown-item text-dark" href="inventory_add_item.php">Add Products</a></li>
     <li><a class="dropdown-item text-dark" href="inventory_upd.php">Update Products</a></li>
   </ul>
-</li>
 
 <li class="nav-item dropdown">
   <a 
@@ -82,7 +89,6 @@
     <li><a class="dropdown-item text-dark" href="user_upd.php">Edit Users</a></li>
   </ul>
 </li>
-          
         </ul>
       </nav>
 
@@ -93,37 +99,38 @@
         <div class="d-flex justify-content-between align-items-center py-3 border-bottom">
           <h1 class="h4">Welcome </h1>
           <div class="d-flex align-items-center gap-3">
-            <!-- DARK MODE TOGGLE ICON -->
+        <span><?= $_SESSION['u_email']; ?></span>
+        <div class="dropdown"> 
+          <a class="d-flex align-items-center text-decoration-none dropdown-toggle text-dark"
+             href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">  
+            
+            <img src="img/J-Mart.png" alt="Avatar" class="rounded-circle" width="45" height="45"/>
+            <div class="d-flex flex-column lh-sm ms-3">
+                <span id="userName" class="fw-bold text-danger "><?= $_SESSION['full_name']; ?></span>
+                <span id="userRole" class="d-block small text-danger "><?= $_SESSION['u_type']; ?></span>
+            </div>
+            </a>
+                <ul class="dropdown-menu dropdown-menu-end bg-black golden-shadow border-0" aria-labelledby="accountDropdown">
+                    
+                    <li><a class="dropdown-item text-danger" href="SignIn.php?action=logout">
+                        <i class="fas fa-power-off me-2" ></i>Logout</a></li>
+                </ul>
+        </div>           
+        <!-- DARK MODE TOGGLE ICON -->
             <div>
               <i class="bi bi-moon-fill fs-5 cursor-pointer" id="darkModeToggle" role="button" title="Toggle Dark Mode"></i>
             </div>
             <!-- COLOR PICKER ICON -->
             <div>
               <i class="bi bi-palette fs-5 cursor-pointer" id="colorPickerToggle" role="button" title="Choose Background Color"></i>
-            </div>            
-        <span>jmart@live.com</span>
-        <div class="dropdown"> 
-          <a class="d-flex align-items-center text-decoration-none dropdown-toggle text-dark"
-             href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">  
-            
-            <img src="img/J-Mart.png" alt="Avatar" class="rounded-circle" width="45" height="45"/>
-             <div class="d-flex flex-column lh-sm ms-3">
-                <span id="userName" class="fw-bold text-danger ">Ali</span>
-                <span id="userRole" class="d-block small text-danger ">admin</span>
             </div>
-            </a>
-                <ul class="dropdown-menu dropdown-menu-end bg-black golden-shadow border-0" aria-labelledby="accountDropdown">
-                    
-                    <li><a class="dropdown-item text-danger" href="SignIn.php">
-                        <i class="fas fa-power-off me-2" ></i>Logout</a></li>
-                </ul>
-        </div>
+          </div>
         </div>
 
         <!-- Content -->
   <div class="card mt-4 p-4 ">
     <h1>View</h1>
-     <?php 
+    <?php 
     include('includes/db.php');
 
          $sql = "SELECT * FROM products";
@@ -170,6 +177,7 @@
           echo "<div class=' p-4'><h2>No record found</h2></div>";
         }
     ?>
+  </div>
   </div>
 
       </main>
@@ -234,17 +242,20 @@
     });
 
 
-      function confirmDeletion(user) {
-        if (confirm('Are you sure you want to delete this user?')) {
-            window.location.href = 'sql_delete_user.php?id=' + user;
+      // Product Deletion method
+     function confirmItemDeletion(item) {
+        if (confirm('Are you sure you want to delete this item?')) {
+            window.location.href = 'inventory_delete_sql.php?id=' + item;
         }
     }
 
-    function confirmItemDeletion(product) {
-        if (confirm('Are you sure you want to delete this item?')) {
-            window.location.href = 'inventory_delete_sql.php?id=' + product;
+    //User deletion function
+    function confirmDeletion(user) {
+        if (confirm('Are you sure you want to delete this user?')) {
+            window.location.href = 'user_delete_sql.php?id=' + user;
         }
-    }  
+    }
+       
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
